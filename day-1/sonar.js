@@ -1,13 +1,33 @@
-const fs = require('fs');
+const fs = require("fs");
 
-const numArray = fs.readFileSync('numbers.txt', 'utf-8');
+let input = fs.readFileSync("numbers.txt", "utf-8");
+input = input.split("\n");
+input = input.map((item) => {
+  if (item !== " " && item !== "") {
+    return parseInt(item);
+  }
+});
 
-let testArray = [199, 200, 208, 210, 200, 207, 240, 269, 260, 263];
-let isGreater = 0;
-for (i = 0, j = 1; i < testArray.length; i++, j++) {
-  if (testArray[i] < testArray[j]) {
-    isGreater++;
+// PART !
+
+let greaterCount = 0;
+for (i = 0; i < input.length; i++) {
+  if (input[i] < input[i + 1]) {
+    greaterCount++;
   }
 }
 
-console.log(isGreater);
+console.log("Part 1: " + greaterCount);
+
+// PART 2
+
+greaterCount = 0;
+for (i = 0; i < input.length; i++) {
+  let windowOne = input[i] + input[i + 1] + input[i + 2];
+  let windowTwo = input[i + 1] + input[i + 2] + input[i + 3];
+  if (windowOne < windowTwo) {
+    greaterCount++;
+  }
+}
+
+console.log("Part 2: " + greaterCount);
