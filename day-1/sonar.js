@@ -8,7 +8,7 @@ input = input.map((item) => {
   }
 });
 
-// PART !
+// PART 1
 
 let greaterCount = 0;
 for (i = 0; i < input.length; i++) {
@@ -18,6 +18,7 @@ for (i = 0; i < input.length; i++) {
 }
 
 console.log("Part 1: " + greaterCount);
+// 1655
 
 // PART 2
 
@@ -31,3 +32,4 @@ for (i = 0; i < input.length; i++) {
 }
 
 console.log("Part 2: " + greaterCount);
+// 1683
