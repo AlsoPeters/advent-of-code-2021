@@ -1,38 +1,57 @@
-let testInput = [
-  'forward 5',
-  'down 5',
-  'forward 8',
-  'up 3',
-  'down 8',
-  'forward 2',
-];
+const fs = require("fs");
 
-const fs = require('fs');
+let input = fs.readFileSync("input.txt", "utf-8");
 
-let input = fs.readFileSync('input.txt', 'utf-8');
+input = input.split("\n");
 
 let horizontalPosition = 0;
 let depth = 0;
 
-for (let i = 0; i < testInput.length; i++) {
-  const element = testInput[i];
+for (let i = 0; i < input.length; i++) {
+  const element = input[i];
 
-  const myArray = element.split(' ');
+  const myArray = element.split(" ");
 
-  if (myArray[0] === 'forward') {
+  if (myArray[0] === "forward") {
     horizontalPosition += parseInt(myArray[1]);
-    console.log(myArray[1]);
   }
 
-  if (myArray[0] === 'down') {
+  if (myArray[0] === "down") {
     depth += parseInt(myArray[1]);
-  } else if (myArray[0] === 'up') {
+  }
+
+  if (myArray[0] === "up") {
     depth -= parseInt(myArray[1]);
   }
 }
 
 let finalDepth = horizontalPosition * depth;
-// console.log(input);
-console.log(horizontalPosition);
-console.log(depth);
-console.log(finalDepth);
+console.log("Final depth =", finalDepth);
+
+// Part 2
+horizontalPosition = 0;
+depth = 0;
+
+let aim = 0;
+
+for (let i = 0; i < input.length; i++) {
+  const element = input[i];
+
+  const myArray = element.split(" ");
+
+  if (myArray[0] === "forward") {
+    horizontalPosition += parseInt(myArray[1]);
+    depth += aim * parseInt(myArray[1]);
+  }
+
+  if (myArray[0] === "down") {
+    aim += parseInt(myArray[1]);
+  }
+
+  if (myArray[0] === "up") {
+    aim -= parseInt(myArray[1]);
+  }
+}
+
+let realFinalDepth = horizontalPosition * depth;
+console.log("Real final depth =", realFinalDepth);
